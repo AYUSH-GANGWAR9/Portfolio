@@ -25,7 +25,7 @@ const skills = [
   },
   {
     category: "DevOps & Tools",
-    items: ["Docker", "CI/CD", "Git", "Linux", "Postman"],
+    items: ["Docker", "CI/CD", "Git", "Linux", "Postman","Kubernetes"],
     color: "from-orange-400 to-red-300"
   }
 ];
@@ -56,8 +56,8 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="bg-surface/50 backdrop-blur-sm rounded-2xl p-6 border border-white/5 hover:border-primary/30 transition-all group"
+              whileHover={{ y: -5, rotateX: 5, rotateY: 5, scale: 1.02 }}
+              className="bg-surface/50 backdrop-blur-sm rounded-2xl p-6 border border-white/5 hover:border-primary/30 transition-all group preserve-3d transition-transform-3d"
             >
               <div className={`h-1 w-12 rounded-full bg-linear-to-r ${skill.color} mb-6`} />
               

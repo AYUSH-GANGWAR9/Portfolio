@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, ExternalLink, Server } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Github, ExternalLink, TrendingUp, Code2 } from "lucide-react";
 
 const categories = ["All", "Full Stack", "ML/AI", "Data Science", "High Performance", "IoT"];
 
@@ -14,9 +13,10 @@ const projects = [
     category: "Full Stack",
     description: "A scalable food delivery platform serving 500+ users. Integrated Stripe for payments and Dockerized for deployment.",
     tech: ["React", "Node.js", "Stripe", "Docker"],
-    metrics: "Performance optimized by 35%",
+    metrics: { label: "Performance", value: "+35%" },
     links: { github: "https://github.com/AYUSH-GANGWAR9?tab=repositories", demo: "#" },
-    color: "from-orange-500 to-red-500"
+    color: "#FF6B35",
+    gradient: "from-orange-500/20 to-red-500/20"
   },
   {
     title: "Academic Insight Portal",
@@ -24,9 +24,10 @@ const projects = [
     category: "Full Stack",
     description: "An analytics portal for academic performance tracking. Used by 300+ users with secure JWT authentication.",
     tech: ["React", "Express", "MongoDB", "JWT"],
-    metrics: "Efficiency increased by 50%",
+    metrics: { label: "Efficiency", value: "+50%" },
     links: { github: "https://github.com/AYUSH-GANGWAR9?tab=repositories", demo: "#" },
-    color: "from-blue-500 to-cyan-500"
+    color: "#00D9FF",
+    gradient: "from-blue-500/20 to-cyan-500/20"
   },
   {
     title: "Faster R-CNN Object Detection",
@@ -34,19 +35,21 @@ const projects = [
     category: "ML/AI",
     description: "High-performance object detection model beating state-of-the-art benchmarks.",
     tech: ["PyTorch", "Python", "Computer Vision"],
-    metrics: "F1: 0.893 | S-Measure: 0.859",
+    metrics: { label: "F1 Score", value: "0.893" },
     links: { github: "https://github.com/AYUSH-GANGWAR9?tab=repositories", demo: "#" },
-    color: "from-purple-500 to-pink-500"
+    color: "#9D4EDD",
+    gradient: "from-purple-500/20 to-pink-500/20"
   },
   {
     title: "Hybrid Signature Verification (Extended)",
-    role: "AI Researcher",
+    role: "AI Engineer",
     category: "ML/AI",
     description: "CNN + HOG signature recognition model. Significant improvement over classic signature verification methods.",
     tech: ["TensorFlow", "OpenCV", "Python"],
-    metrics: "98% Accuracy",
+    metrics: { label: "Accuracy", value: "98%" },
     links: { github: "https://github.com/AYUSH-GANGWAR9?tab=repositories", demo: "#" },
-    color: "from-green-500 to-emerald-500"
+    color: "#6B8E23",
+    gradient: "from-green-500/20 to-emerald-500/20"
   },
   {
     title: "Fake Colorized Image Detection",
@@ -54,39 +57,43 @@ const projects = [
     category: "ML/AI",
     description: "Detection system for identifying artificially colorized images using CDM.",
     tech: ["Python", "Scikit-learn", "Image Processing"],
-    metrics: "Robust against GANs",
+    metrics: { label: "Robustness", value: "High" },
     links: { github: "https://github.com/AYUSH-GANGWAR9?tab=repositories", demo: "#" },
-    color: "from-yellow-500 to-amber-500"
+    color: "#F7DF1E",
+    gradient: "from-yellow-500/20 to-amber-500/20"
   },
   {
     title: "Automated Accident Response",
-    role: "IoT Developer",
+    role: "Full Stack Developer",
     category: "IoT",
     description: "IoT-based accident detection & emergency response automation system.",
     tech: ["JavaScript", "System Automation", "Sensors"],
-    metrics: "Forked & modified",
+    metrics: { label: "Response Time", value: "Fast" },
     links: { github: "https://github.com/AYUSH-GANGWAR9?tab=repositories", demo: "#" },
-    color: "from-indigo-500 to-blue-500"
+    color: "#4169E1",
+    gradient: "from-indigo-500/20 to-blue-500/20"
   },
   {
     title: "House Price Prediction",
-    role: "Data Scientist",
+    role: "Data Engineer",
     category: "Data Science",
     description: "Regression-based ML model to estimate housing prices from dataset trends.",
     tech: ["Python", "Scikit-learn", "Linear Regression"],
-    metrics: "High Accuracy Estimation",
+    metrics: { label: "Accuracy", value: "High" },
     links: { github: "https://github.com/AYUSH-GANGWAR9?tab=repositories", demo: "#" },
-    color: "from-teal-500 to-green-500"
+    color: "#47A248",
+    gradient: "from-teal-500/20 to-green-500/20"
   },
   {
     title: "Malicious Website Detection",
-    role: "Security Engineer",
+    role: "ML Engineer",
     category: "ML/AI",
     description: "ML-based system detecting malicious URLs using pattern recognition.",
     tech: ["Python", "Jupyter", "Feature Engineering"],
-    metrics: "Enhanced Pattern Recognition",
+    metrics: { label: "Detection", value: "Enhanced" },
     links: { github: "https://github.com/AYUSH-GANGWAR9?tab=repositories", demo: "#" },
-    color: "from-red-500 to-rose-500"
+    color: "#DC382D",
+    gradient: "from-red-500/20 to-rose-500/20"
   },
   {
     title: "Parallel PageRank",
@@ -94,78 +101,86 @@ const projects = [
     category: "High Performance",
     description: "High-performance implementation of PageRank using MPI and OpenMP.",
     tech: ["C++", "MPI", "OpenMP"],
-    metrics: "⚙️ High Performance Computing",
+    metrics: { label: "Performance", value: "HPC" },
     links: { github: "https://github.com/AYUSH-GANGWAR9?tab=repositories", demo: "#" },
-    color: "from-slate-500 to-gray-500"
+    color: "#A0A0A0",
+    gradient: "from-slate-500/20 to-gray-500/20"
   },
   {
     title: "Credit Card Fraud Detection",
-    role: "Data Scientist",
+    role: "Data Engineer",
     category: "Data Science",
     description: "Fraud detection on 285K+ transactions using SMOTE and tuning.",
     tech: ["Python", "Scikit-Learn", "XGBoost"],
-    metrics: "AUC = 0.987 | Precision@k = 0.92",
+    metrics: { label: "AUC", value: "0.987" },
     links: { github: "https://github.com/AYUSH-GANGWAR9?tab=repositories", demo: "#" },
-    color: "from-violet-500 to-purple-500"
+    color: "#9D4EDD",
+    gradient: "from-violet-500/20 to-purple-500/20"
   },
   {
     title: "Sales Forecasting",
-    role: "Data Scientist",
+    role: "Data Engineer",
     category: "Data Science",
     description: "Time-series prediction using LSTM and Prophet models.",
     tech: ["TensorFlow", "Prophet", "Python"],
-    metrics: "RMSE reduced by 17%",
+    metrics: { label: "RMSE", value: "-17%" },
     links: { github: "https://github.com/AYUSH-GANGWAR9?tab=repositories", demo: "#" },
-    color: "from-amber-500 to-orange-500"
+    color: "#FF9900",
+    gradient: "from-amber-500/20 to-orange-500/20"
   }
 ];
 
 export default function Projects() {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const filteredProjects = activeCategory === "All" 
+  const filteredProjects = selectedCategory === "All" 
     ? projects 
-    : projects.filter(project => project.category === activeCategory);
+    : projects.filter(p => p.category === selectedCategory);
 
   return (
-    <section id="projects" className="py-20 bg-surface/30">
-      <div className="container mx-auto px-6">
+    <section id="projects" className="py-24 relative overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#00D9FF]/5 to-transparent" />
+      
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">
-            Featured <span className="text-primary">Projects</span>
+          <h2 className="text-4xl md:text-5xl font-bold font-heading mb-4">
+            Featured <span className="text-[#6B8E23]">Projects</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-            A showcase of technical depth, from full-stack web apps to advanced AI research.
+          <p className="text-[#A0A0A0] max-w-2xl mx-auto text-lg">
+            Building innovative solutions across multiple domains
           </p>
-
-          {/* Filter Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={cn(
-                  "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border",
-                  activeCategory === category
-                    ? "bg-primary text-white border-primary shadow-lg shadow-primary/25"
-                    : "bg-surface text-muted-foreground border-white/5 hover:border-primary/30 hover:text-foreground"
-                )}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
         </motion.div>
 
-        <motion.div 
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        {/* Category Filter */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-wrap justify-center gap-3 mb-12"
         >
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                selectedCategory === category
+                  ? "bg-[#6B8E23] text-white shadow-[0_0_20px_rgba(107,142,35,0.4)]"
+                  : "bg-[#1a1a2e] text-[#A0A0A0] hover:bg-[#6B8E23]/20 hover:text-[#F0F0F0] border border-[#6B8E23]/20"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </motion.div>
+
+        {/* Projects Grid */}
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
               <motion.div
@@ -174,53 +189,100 @@ export default function Projects() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
+                whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ duration: 0.3 }}
-                className="group relative bg-background rounded-2xl overflow-hidden border border-white/5 hover:border-primary/30 transition-all hover:-translate-y-2 h-full flex flex-col"
+                className="group relative h-full flex flex-col"
               >
-                {/* Gradient Header */}
-                <div className={`h-2 w-full bg-linear-to-r ${project.color}`} />
-                
-                <div className="p-6 flex-1 flex flex-col">
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <h3 className="text-xl font-bold mb-1 group-hover:text-primary transition-colors">{project.title}</h3>
-                      <span className="text-xs font-medium px-2 py-1 rounded-full bg-surface text-muted-foreground border border-white/5">
-                        {project.role}
-                      </span>
+                {/* Card */}
+                <div className="relative bg-gradient-to-br from-[#1a1a2e] to-[#0E0E15] rounded-2xl p-6 border-2 border-transparent hover:border-[${project.color}]/50 transition-all duration-300 overflow-hidden flex-1 flex flex-col">
+                  {/* Gradient overlay */}
+                  <div 
+                    className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                    style={{ filter: 'blur(40px)' }}
+                  />
+                  
+                  {/* Content */}
+                  <div className="relative z-10 flex flex-col flex-1">
+                    {/* Header */}
+                    <div className="mb-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <Code2 size={18} style={{ color: project.color }} />
+                        <span className="text-xs text-[#A0A0A0]">{project.role}</span>
+                      </div>
+                      <h3 className="text-xl font-bold mb-2" style={{ color: project.color }}>
+                        {project.title}
+                      </h3>
+                      <p className="text-[#A0A0A0] text-sm leading-relaxed">
+                        {project.description}
+                      </p>
                     </div>
-                  </div>
 
-                  <p className="text-muted-foreground text-sm mb-6 line-clamp-3 flex-1">
-                    {project.description}
-                  </p>
-
-                  <div className="mb-6">
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map((t, i) => (
-                        <span key={i} className="text-xs px-2 py-1 rounded bg-primary/10 text-primary">
-                          {t}
+                    {/* Tech Stack */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.tech.map((tech, i) => (
+                        <span
+                          key={i}
+                          className="px-3 py-1 bg-[#0E0E15]/50 text-xs rounded-full text-[#A0A0A0] border border-[#6B8E23]/20"
+                        >
+                          {tech}
                         </span>
                       ))}
                     </div>
-                  </div>
 
-                  <div className="flex items-center justify-between pt-4 border-t border-white/5 mt-auto">
-                    <span className="text-xs font-bold text-foreground flex items-center gap-1">
-                      <Server size={12} className="text-primary" />
-                      {project.metrics}
-                    </span>
-                    
-                    <div className="flex gap-3">
-                      <a 
-                        href={project.links.github} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        <Github size={16} /> View Repo
-                      </a>
+                    {/* Spacer */}
+                    <div className="flex-1" />
+
+                    {/* Metrics & Links */}
+                    <div className="pt-4 border-t border-[#6B8E23]/20">
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center gap-2">
+                          <TrendingUp size={14} style={{ color: project.color }} />
+                          <div>
+                            <p className="text-xs text-[#A0A0A0]">{project.metrics.label}</p>
+                            <p className="text-sm font-bold" style={{ color: project.color }}>
+                              {project.metrics.value}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex gap-2">
+                        <a
+                          href={project.links.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-[#0E0E15]/50 hover:bg-[#6B8E23]/20 text-[#A0A0A0] hover:text-[#F0F0F0] rounded-lg text-sm transition-all border border-[#6B8E23]/20 hover:border-[#6B8E23]/50"
+                        >
+                          <Github size={16} />
+                          Code
+                        </a>
+                        <a
+                          href={project.links.demo}
+                          className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-[#6B8E23]/10 hover:bg-[#6B8E23]/20 text-[#6B8E23] hover:text-[#8FBF3F] rounded-lg text-sm transition-all border border-[#6B8E23]/30 hover:border-[#6B8E23]/50"
+                        >
+                          <ExternalLink size={16} />
+                          Demo
+                        </a>
+                      </div>
                     </div>
                   </div>
+
+                  {/* Corner accent */}
+                  <div 
+                    className="absolute top-0 right-0 w-24 h-24 opacity-10 group-hover:opacity-20 transition-opacity"
+                    style={{
+                      background: `radial-gradient(circle at top right, ${project.color}, transparent)`,
+                    }}
+                  />
+
+                  {/* Neon glow border */}
+                  <div 
+                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                    style={{
+                      boxShadow: `0 0 30px ${project.color}40`,
+                    }}
+                  />
                 </div>
               </motion.div>
             ))}

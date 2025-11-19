@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Background from "@/components/Background";
 
 export default function RootLayout({
   children,
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${inter.variable} antialiased bg-background text-foreground font-body`}
       >
+        <Background />
         <Navbar />
         <main className="min-h-screen">
           {children}
