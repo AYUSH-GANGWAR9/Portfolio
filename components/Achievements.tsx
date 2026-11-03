@@ -1,13 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Users, Zap, Brain, Activity } from "lucide-react";
+import { Code2, Zap, Brain, Activity } from "lucide-react";
 
 const stats = [
   {
-    icon: Users,
-    value: "500+",
-    label: "Users Served",
+    icon: Code2,
+    value: "450+",
+    label: "DSA Problems Solved",
     color: "text-blue-400"
   },
   {
@@ -19,13 +19,13 @@ const stats = [
   {
     icon: Zap,
     value: "35%",
-    label: "Latency Reduction",
+    label: "Faster Data Ingestion",
     color: "text-yellow-400"
   },
   {
     icon: Activity,
     value: "300+",
-    label: "Active Users",
+    label: "Students on Portal",
     color: "text-green-400"
   }
 ];

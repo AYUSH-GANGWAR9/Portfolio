@@ -16,7 +16,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Ayush Gangwar | Full-Stack Developer & ML Engineer",
   description:
-    "Portfolio of Ayush Gangwar - Full Stack Developer, ML Engineer, and Software Engineering Intern at GlobalLogic.",
+    "Portfolio of Ayush Gangwar - Full Stack Developer and B.Tech CSE graduate from IIIT Vadodara. Experience at EY, GlobalLogic and more.",
 };
 
 import Navbar from "@/components/Navbar";

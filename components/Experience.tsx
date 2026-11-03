@@ -5,37 +5,56 @@ import { Calendar, Briefcase, TrendingUp } from "lucide-react";
 
 const experiences = [
   {
+    company: "EY",
+    subtitle: "Medical Device Park, Sector 28, YEIDA",
+    role: "Full-Stack Developer Intern",
+    period: "Jul 2026 - Sep 2026",
+    color: "#FFE600",
+    gradient: "from-yellow-500/20 to-amber-500/20",
+    description: [
+      "Built the MDP Allotment Management Dashboard, a Flask and MySQL full-stack app (7 tables) that replaced manual plot-allotment tracking, with schema-driven dynamic forms and automatic stage-to-stage progression.",
+      "Implemented role-based access control with Werkzeug password hashing, CSRF protection, login lockout, session timeout and a searchable audit log of every create/update/delete/login action.",
+      "Added CSV/Excel bulk import with per-row validation, an interactive SVG park map, stage-wise PDF/Excel reports, and scheduled email reminders (Brevo API) with run history.",
+      "Deployed on Render (Gunicorn) with MySQL on Railway; wrote technical reports and setup guides for the park."
+    ],
+    metrics: [
+      { label: "DB Tables", value: "7" },
+      { label: "Access Control", value: "RBAC" }
+    ]
+  },
+  {
     company: "GlobalLogic",
-    subtitle: "A Hitachi Group Company",
+    subtitle: "A Hitachi Group Company | Noida, UP",
     role: "Software Engineering Intern",
-    period: "May 2024 - July 2025",
+    period: "May 2025 - Jul 2025",
     color: "#00D9FF",
     gradient: "from-cyan-500/20 to-blue-500/20",
     description: [
-      "Developed a RAG pipeline using LangChain and OpenAI, improving information retrieval accuracy by 40%.",
-      "Optimized backend performance with Node.js and Redis, reducing latency by 35%.",
-      "Collaborated with cross-functional teams to deliver scalable solutions."
+      "Built a RAG pipeline using Python, LangChain, FAISS and OpenAI GPT-4, boosting response accuracy by 40% and keeping query latency under 800ms.",
+      "Rewrote data ingestion with Python asyncio and a Redis caching layer (85% cache hit rate), cutting ingestion time by 35%.",
+      "Containerized the app with Docker multi-stage builds (60% smaller images) and set up a GitHub Actions CI/CD pipeline for automated testing and deployment."
     ],
     metrics: [
       { label: "Accuracy", value: "+40%" },
-      { label: "Latency", value: "-35%" }
+      { label: "Ingestion Time", value: "-35%" },
+      { label: "Image Size", value: "-60%" }
     ]
   },
   {
     company: "Fast Conversion",
-    subtitle: "Marketing Solutions",
-    role: "Full Stack Intern",
-    period: "March 2024 - June 2024",
+    subtitle: "Marketing Solutions | Remote",
+    role: "Web Development Intern",
+    period: "Mar 2024 - Jun 2024",
     color: "#6B8E23",
     gradient: "from-green-500/20 to-emerald-500/20",
     description: [
-      "Developed responsive web interfaces using React and Tailwind CSS.",
-      "Boosted user engagement by 15% through UI/UX improvements.",
-      "Reduced bounce rate by 25% with analytics-driven design changes."
+      "Made 20+ responsive components with React.js, Redux and Tailwind CSS, improving Core Web Vitals (LCP, FID, CLS) by 30% and lifting mobile engagement by 25%.",
+      "Designed 15+ RESTful endpoints with Node.js and Express.js, and streamlined MongoDB queries using compound indexes and aggregation pipelines.",
+      "Profiled and fixed API bottlenecks with query optimization and caching, reducing P95 latency from 480ms to 290ms."
     ],
     metrics: [
-      { label: "Engagement", value: "+15%" },
-      { label: "Bounce Rate", value: "-25%" }
+      { label: "Web Vitals", value: "+30%" },
+      { label: "API Latency", value: "-40%" }
     ]
   }
 ];
@@ -61,7 +80,7 @@ export default function Experience() {
           </p>
         </motion.div>
 
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
@@ -113,7 +132,7 @@ export default function Experience() {
                   </ul>
 
                   {/* Metrics */}
-                  <div className="flex gap-4 pt-4 border-t border-[#6B8E23]/20">
+                  <div className="flex flex-wrap gap-x-6 gap-y-3 pt-4 border-t border-[#6B8E23]/20">
                     {exp.metrics.map((metric, i) => (
                       <div key={i} className="flex items-center gap-2">
                         <TrendingUp size={16} style={{ color: exp.color }} />

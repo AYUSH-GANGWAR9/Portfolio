@@ -6,14 +6,37 @@ import { Github, ExternalLink, TrendingUp, Code2 } from "lucide-react";
 
 const categories = ["All", "Full Stack", "ML/AI", "Data Science", "High Performance", "IoT"];
 
-const projects = [
+type Project = {
+  title: string;
+  role: string;
+  category: string;
+  description: string;
+  tech: string[];
+  metrics: { label: string; value: string };
+  links: { github?: string; demo?: string };
+  color: string;
+  gradient: string;
+};
+
+const projects: Project[] = [
+  {
+    title: "MDP Allotment Management Dashboard",
+    role: "Full Stack Developer Intern @ EY",
+    category: "Full Stack",
+    description: "Plot allotment tracker for the Medical Device Park (YEIDA): 7-table CRUD, role-based access with audit log, CSV/Excel bulk import, interactive SVG park map, PDF/Excel reports and scheduled email reminders.",
+    tech: ["Flask", "MySQL", "Render", "Railway"],
+    metrics: { label: "DB Tables", value: "7" },
+    links: {},
+    color: "#FFE600",
+    gradient: "from-yellow-500/20 to-amber-500/20"
+  },
   {
     title: "Food Delivery Web App",
     role: "Full Stack Developer",
     category: "Full Stack",
-    description: "A scalable food delivery platform serving 500+ users. Integrated Stripe for payments and Dockerized for deployment.",
-    tech: ["React", "Node.js", "Stripe", "Docker"],
-    metrics: { label: "Performance", value: "+35%" },
+    description: "MERN food delivery platform with JWT auth (refresh token rotation, RBAC). MongoDB compound indexes and a Redis cache (85% hit rate) halved page load time; Socket.io real-time order tracking; automated AWS deployment via GitHub Actions.",
+    tech: ["React", "Node.js", "MongoDB", "Redis", "Socket.io", "AWS"],
+    metrics: { label: "Page Load", value: "2.1s → 1.05s" },
     links: { github: "https://github.com/AYUSH-GANGWAR9?tab=repositories", demo: "#" },
     color: "#FF6B35",
     gradient: "from-orange-500/20 to-red-500/20"
@@ -22,9 +45,9 @@ const projects = [
     title: "Academic Insight Portal",
     role: "Full Stack Developer",
     category: "Full Stack",
-    description: "An analytics portal for academic performance tracking. Used by 300+ users with secure JWT authentication.",
-    tech: ["React", "Express", "MongoDB", "JWT"],
-    metrics: { label: "Efficiency", value: "+50%" },
+    description: "Central portal for grades and attendance with RBAC dashboards serving 300+ students and 25+ faculty. JWT auth with bcrypt hashing; compound indexes on the MySQL schema cut query time from 800ms to 400ms.",
+    tech: ["React", "Express", "MySQL", "JWT"],
+    metrics: { label: "Query Time", value: "-50%" },
     links: { github: "https://github.com/AYUSH-GANGWAR9?tab=repositories", demo: "#" },
     color: "#00D9FF",
     gradient: "from-blue-500/20 to-cyan-500/20"
@@ -88,9 +111,9 @@ const projects = [
     title: "Malicious Website Detection",
     role: "ML Engineer",
     category: "ML/AI",
-    description: "ML-based system detecting malicious URLs using pattern recognition.",
-    tech: ["Python", "Jupyter", "Feature Engineering"],
-    metrics: { label: "Detection", value: "Enhanced" },
+    description: "FastAPI service extracting 30+ URL features (domain age, SSL validity, redirect chains) and classifying with an XGBoost + Random Forest ensemble: 96% accuracy, 0.98 ROC-AUC, 100+ URLs/min. SHAP explanations and a risk-scoring dashboard.",
+    tech: ["FastAPI", "XGBoost", "Python", "Docker"],
+    metrics: { label: "Accuracy", value: "96%" },
     links: { github: "https://github.com/AYUSH-GANGWAR9?tab=repositories", demo: "#" },
     color: "#DC382D",
     gradient: "from-red-500/20 to-rose-500/20"
@@ -247,24 +270,30 @@ export default function Projects() {
                       </div>
 
                       {/* Action Buttons */}
-                      <div className="flex gap-2">
-                        <a
-                          href={project.links.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-[#0E0E15]/50 hover:bg-[#6B8E23]/20 text-[#A0A0A0] hover:text-[#F0F0F0] rounded-lg text-sm transition-all border border-[#6B8E23]/20 hover:border-[#6B8E23]/50"
-                        >
-                          <Github size={16} />
-                          Code
-                        </a>
-                        <a
-                          href={project.links.demo}
-                          className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-[#6B8E23]/10 hover:bg-[#6B8E23]/20 text-[#6B8E23] hover:text-[#8FBF3F] rounded-lg text-sm transition-all border border-[#6B8E23]/30 hover:border-[#6B8E23]/50"
-                        >
-                          <ExternalLink size={16} />
-                          Demo
-                        </a>
-                      </div>
+                      {(project.links.github || project.links.demo) && (
+                        <div className="flex gap-2">
+                          {project.links.github && (
+                            <a
+                              href={project.links.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-[#0E0E15]/50 hover:bg-[#6B8E23]/20 text-[#A0A0A0] hover:text-[#F0F0F0] rounded-lg text-sm transition-all border border-[#6B8E23]/20 hover:border-[#6B8E23]/50"
+                            >
+                              <Github size={16} />
+                              Code
+                            </a>
+                          )}
+                          {project.links.demo && (
+                            <a
+                              href={project.links.demo}
+                              className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-[#6B8E23]/10 hover:bg-[#6B8E23]/20 text-[#6B8E23] hover:text-[#8FBF3F] rounded-lg text-sm transition-all border border-[#6B8E23]/30 hover:border-[#6B8E23]/50"
+                            >
+                              <ExternalLink size={16} />
+                              Demo
+                            </a>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
 

@@ -24,7 +24,7 @@ export default function Footer() {
           </div>
           
           <div className="text-sm text-muted-foreground text-center md:text-right">
-            <p>&copy; 2025 Designed & Developed by Ayush Gangwar.</p>
+            <p>&copy; 2026 Designed & Developed by Ayush Gangwar.</p>
             <p className="mt-1 text-xs opacity-60">Built with Next.js, Tailwind CSS & Framer Motion</p>
           </div>
         </div>

@@ -33,7 +33,7 @@ const features = [
 ];
 
 const stats = [
-  { label: "CGPA", value: "8.01", icon: Award },
+  { label: "CGPA", value: "7.91", icon: Award },
   { label: "Projects", value: "11+", icon: Code2 },
 ];
 
@@ -140,12 +140,14 @@ export default function About() {
               {/* Bio Text */}
               <div className="space-y-4 text-[#A0A0A0] text-lg leading-relaxed">
                 <p>
-                  I am a <strong className="text-[#F0F0F0]">B.Tech CSE student</strong> at IIIT Vadodara International Campus Diu with a CGPA of 8.01.
-                  My journey involves deep diving into Full Stack Development, Computer Vision, and AI.
+                  I am a <strong className="text-[#F0F0F0]">B.Tech CSE graduate</strong> from IIIT Vadodara (May 2026) with a CGPA of 7.91.
+                  My journey involves deep diving into Full Stack Development, Backend Systems, and AI.
                 </p>
                 <p>
-                  Previously, I worked as a <strong className="text-[#F0F0F0]">Software Engineering Intern at GlobalLogic</strong>, 
-                  where I contributed to an enterprise RAG pipeline, improving accuracy by 40% and reducing latency by 35%.
+                  Most recently, I interned as a <strong className="text-[#F0F0F0]">Full-Stack Developer at EY</strong>, 
+                  where I built the MDP Allotment Management Dashboard for the Medical Device Park (YEIDA) using Flask and MySQL. 
+                  Before that, as a <strong className="text-[#F0F0F0]">Software Engineering Intern at GlobalLogic</strong>, 
+                  I built a RAG pipeline that improved accuracy by 40% and cut ingestion time by 35%.
                 </p>
                 <p>
                   I value <strong className="text-[#F0F0F0]">performance, scalability, and clean UI</strong>. 
