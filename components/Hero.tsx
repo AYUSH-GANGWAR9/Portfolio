@@ -312,8 +312,8 @@ export default function Hero() {
             </motion.a>
 
             <motion.a
-              href="/Ayush_Gangwar_Resume.pdf"
-              download="Ayush_Gangwar_Resume.pdf"
+              href="/AyushGangwar_IIITVadodara.pdf"
+              download="AyushGangwar_IIITVadodara.pdf"
               className="group relative px-10 py-5 bg-transparent text-[#F0F0F0] rounded-full font-semibold text-lg border-2 border-[#6B8E23]/50 hover:border-[#6B8E23] backdrop-blur-sm overflow-hidden"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
