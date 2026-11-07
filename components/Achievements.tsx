@@ -1,30 +1,35 @@
 "use client";
 
 import { motion } from "framer-motion";
+import CountUp from "@/components/CountUp";
 import { Code2, Zap, Brain, Activity } from "lucide-react";
 
 const stats = [
   {
     icon: Code2,
-    value: "450+",
+    value: 450,
+    suffix: "+",
     label: "DSA Problems Solved",
     color: "text-blue-400"
   },
   {
     icon: Brain,
-    value: "40%",
+    value: 40,
+    suffix: "%",
     label: "AI Accuracy Boost",
     color: "text-purple-400"
   },
   {
     icon: Zap,
-    value: "35%",
+    value: 35,
+    suffix: "%",
     label: "Faster Data Ingestion",
     color: "text-yellow-400"
   },
   {
     icon: Activity,
-    value: "300+",
+    value: 300,
+    suffix: "+",
     label: "Students on Portal",
     color: "text-green-400"
   }
@@ -47,7 +52,7 @@ export default function Achievements() {
               <div className={`mb-3 p-3 rounded-full bg-background border border-white/10 ${stat.color}`}>
                 <stat.icon size={24} />
               </div>
-              <h3 className="text-3xl md:text-4xl font-bold font-heading mb-1">{stat.value}</h3>
+              <h3 className="text-3xl md:text-4xl font-bold font-heading mb-1"><CountUp to={stat.value} suffix={stat.suffix} /></h3>
               <p className="text-sm text-muted-foreground font-medium uppercase tracking-wider">{stat.label}</p>
             </motion.div>
           ))}

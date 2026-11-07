@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import TechSphere from "@/components/TechSphere";
 import { 
   SiCplusplus, SiC, SiJavascript, SiGo, SiReact, SiNextdotjs, 
   SiTypescript, SiNodedotjs, SiExpress, SiPython, SiTensorflow, 
@@ -58,9 +59,11 @@ export default function Technologies() {
       
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 40, rotateX: -40 }}
+          whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          style={{ transformPerspective: 900, transformOrigin: "50% 100%" }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold font-heading mb-4">
@@ -71,96 +74,7 @@ export default function Technologies() {
           </p>
         </motion.div>
 
-        {/* Circular bubble grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 max-w-5xl mx-auto">
-          {technologies.map((tech, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.05, type: "spring", stiffness: 200 }}
-              whileHover={{ scale: 1.15, y: -10 }}
-              className="group relative flex flex-col items-center"
-            >
-              {/* Circular bubble */}
-              <div 
-                className={`relative w-24 h-24 rounded-full flex items-center justify-center bg-gradient-to-br from-[#1a1a2e] to-[#0E0E15] border-2 transition-all duration-300 cursor-pointer ${
-                  tech.isPriority 
-                    ? 'border-[#6B8E23]/40 group-hover:border-[#6B8E23]' 
-                    : 'border-[#6B8E23]/20 group-hover:border-[#6B8E23]'
-                }`}
-                style={{
-                  boxShadow: tech.isPriority 
-                    ? `0 0 15px ${tech.color}30, 0 0 30px rgba(107,142,35,0.2)` 
-                    : `0 0 0 rgba(107,142,35,0), 0 0 30px rgba(107,142,35,0)`,
-                }}
-              >
-                {/* Continuous subtle glow for priority technologies */}
-                {tech.isPriority && (
-                  <motion.div
-                    className="absolute inset-0 rounded-full"
-                    animate={{
-                      boxShadow: [
-                        `0 0 15px ${tech.color}30, 0 0 25px rgba(107,142,35,0.2)`,
-                        `0 0 25px ${tech.color}50, 0 0 35px rgba(107,142,35,0.3)`,
-                        `0 0 15px ${tech.color}30, 0 0 25px rgba(107,142,35,0.2)`,
-                      ],
-                    }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  />
-                )}
-                
-                {/* Pulsing glow effect on hover */}
-                <motion.div
-                  className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100"
-                  animate={{
-                    boxShadow: [
-                      `0 0 20px ${tech.color}40`,
-                      `0 0 40px ${tech.color}60`,
-                      `0 0 20px ${tech.color}40`,
-                    ],
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                
-                {/* Icon */}
-                <tech.Icon 
-                  className="relative z-10 group-hover:scale-110 transition-transform" 
-                  size={40}
-                  style={{ color: tech.color }}
-                />
-
-                {/* Rotating ring on hover */}
-                <motion.div
-                  className="absolute inset-0 rounded-full border-2 border-dashed opacity-0 group-hover:opacity-50"
-                  style={{ borderColor: tech.color }}
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                />
-              </div>
-
-              {/* Tech name */}
-              <p 
-                className="mt-4 text-sm font-medium text-[#A0A0A0] group-hover:text-[#F0F0F0] transition-colors text-center"
-                style={{ color: tech.color }}
-              >
-                {tech.name}
-              </p>
-
-              {/* Particle effect on hover */}
-              <motion.div
-                className="absolute top-0 w-2 h-2 rounded-full opacity-0 group-hover:opacity-100"
-                style={{ backgroundColor: tech.color }}
-                animate={{
-                  y: [-10, -30],
-                  opacity: [1, 0],
-                }}
-                transition={{ duration: 1, repeat: Infinity }}
-              />
-            </motion.div>
-          ))}
-        </div>
+        <TechSphere items={technologies} />
 
         {/* Bottom accent line */}
         <motion.div

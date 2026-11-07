@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import TiltCard from "@/components/TiltCard";
 import { Code2, Server, Brain, Rocket, Award, BrainCircuit } from "lucide-react";
 import { title } from "process";
 
@@ -45,9 +46,11 @@ export default function About() {
       
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 40, rotateX: -40 }}
+          whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          style={{ transformPerspective: 900, transformOrigin: "50% 100%" }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold font-heading mb-4">
@@ -67,6 +70,7 @@ export default function About() {
             whileHover={{ y: -8, scale: 1.02 }}
             className="w-full lg:w-1/3 group relative"
           >
+            <TiltCard>
             <div className="relative bg-gradient-to-br from-[#1a1a2e] to-[#0E0E15] rounded-2xl p-4 border-2 border-transparent hover:border-[#6B8E23]/50 transition-all duration-300 overflow-hidden">
               {/* Gradient overlay */}
               <div 
@@ -127,6 +131,7 @@ export default function About() {
                 }}
               />
             </div>
+            </TiltCard>
           </motion.div>
 
           {/* Content Side */}

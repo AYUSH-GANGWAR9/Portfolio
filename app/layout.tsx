@@ -22,6 +22,9 @@ export const metadata: Metadata = {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Background from "@/components/Background";
+import ScrollProgress from "@/components/ScrollProgress";
+import CursorGlow from "@/components/CursorGlow";
+import ScrollScene from "@/components/ScrollScene";
 
 export default function RootLayout({
   children,
@@ -33,7 +36,10 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${inter.variable} antialiased bg-background text-foreground font-body`}
       >
+        <ScrollProgress />
+        <CursorGlow />
         <Background />
+        <ScrollScene />
         <Navbar />
         <main className="min-h-screen">
           {children}

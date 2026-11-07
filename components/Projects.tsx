@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Github, ExternalLink, TrendingUp, Code2 } from "lucide-react";
+import TiltCard from "@/components/TiltCard";
 
 const categories = ["All", "Full Stack", "ML/AI", "Data Science", "High Performance", "IoT"];
 
@@ -161,16 +162,18 @@ export default function Projects() {
     : projects.filter(p => p.category === selectedCategory);
 
   return (
-    <section id="projects" className="py-24 relative overflow-hidden">
+    <section id="projects" className="py-24 relative overflow-hidden scroll-mt-16">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#00D9FF]/5 to-transparent" />
       
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 40, rotateX: -40 }}
+          whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          style={{ transformPerspective: 900, transformOrigin: "50% 100%" }}
+          className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold font-heading mb-4">
             Featured <span className="text-[#6B8E23]">Projects</span>
@@ -216,6 +219,7 @@ export default function Projects() {
                 transition={{ duration: 0.3 }}
                 className="group relative h-full flex flex-col"
               >
+                <TiltCard className="flex-1 flex flex-col">
                 {/* Card */}
                 <div className="relative bg-gradient-to-br from-[#1a1a2e] to-[#0E0E15] rounded-2xl p-6 border-2 border-transparent hover:border-[${project.color}]/50 transition-all duration-300 overflow-hidden flex-1 flex flex-col">
                   {/* Gradient overlay */}
@@ -313,6 +317,7 @@ export default function Projects() {
                     }}
                   />
                 </div>
+                </TiltCard>
               </motion.div>
             ))}
           </AnimatePresence>

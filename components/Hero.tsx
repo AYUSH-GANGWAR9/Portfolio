@@ -3,6 +3,10 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Download, Sparkles, Code2, Zap } from "lucide-react";
+import dynamic from "next/dynamic";
+import Magnetic from "@/components/Magnetic";
+
+const Hero3D = dynamic(() => import("@/components/Hero3D"), { ssr: false });
 
 const roles = [
   "Full Stack Developer",
@@ -17,27 +21,13 @@ export default function Hero() {
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [particles, setParticles] = useState<Array<{
-    id: number;
-    x: number;
-    y: number;
-    size: number;
-    duration: number;
-    delay: number;
-  }>>([]);
 
-  useEffect(() => {
-    // Generate particles only on client
-    const newParticles = Array.from({ length: 50 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 4 + 2,
-      duration: Math.random() * 20 + 10,
-      delay: Math.random() * 5,
-    }));
-    setParticles(newParticles);
-  }, []);
+  const goToProjects = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const el = document.getElementById("projects");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    else window.location.hash = "projects";
+  };
 
   useEffect(() => {
     const role = roles[currentRole];
@@ -89,34 +79,9 @@ export default function Hero() {
         />
       </div>
 
-      {/* Floating Particles */}
-      <div className="absolute inset-0 overflow-hidden" suppressHydrationWarning>
-        {particles.map((particle) => (
-          <motion.div
-            key={particle.id}
-            className="absolute rounded-full"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              width: particle.size,
-              height: particle.size,
-              background: `radial-gradient(circle, ${
-                particle.id % 3 === 0 ? "#6B8E23" : particle.id % 3 === 1 ? "#00D9FF" : "#9D4EDD"
-              }80, transparent)`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.2, 0.8, 0.2],
-              scale: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: particle.duration,
-              repeat: Infinity,
-              delay: particle.delay,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
+      {/* 3D scene (decorative, never intercepts clicks) */}
+      <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden>
+        <Hero3D />
       </div>
 
       {/* Grid Pattern Overlay */}
@@ -166,7 +131,7 @@ export default function Hero() {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
+        <div className="flex flex-col items-center text-center max-w-5xl mx-auto lg:items-start lg:text-left lg:mx-0 lg:max-w-[52%]">
           {/* Floating Icons */}
           <div className="absolute inset-0 pointer-events-none">
             <motion.div
@@ -217,7 +182,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-7xl md:text-9xl font-bold font-heading mb-6 tracking-tight relative"
+            className="text-6xl sm:text-7xl font-bold font-heading mb-6 tracking-tight relative"
           >
             <motion.span
               className="relative inline-block"
@@ -258,10 +223,10 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="h-16 md:h-20 mb-8 relative"
+            className="h-10 md:h-12 mb-8 relative"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#00D9FF]/10 to-transparent blur-xl" />
-            <span className="relative text-3xl md:text-5xl font-semibold bg-gradient-to-r from-[#00D9FF] to-[#9D4EDD] bg-clip-text text-transparent">
+            <span className="relative text-xl sm:text-2xl lg:text-3xl font-semibold bg-gradient-to-r from-[#00D9FF] to-[#9D4EDD] bg-clip-text text-transparent">
               {displayText}
               <motion.span 
                 className="text-[#6B8E23]"
@@ -278,57 +243,43 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="max-w-3xl text-[#A0A0A0] text-xl md:text-2xl mb-12 leading-relaxed"
+            className="max-w-2xl text-[#A0A0A0] text-lg md:text-xl mb-10 leading-relaxed"
           >
             <span className="text-[#F0F0F0] font-medium">Building scalable, intelligent systems</span> with modern tech stacks.
             <br />
             Transforming ideas into <span className="text-[#6B8E23]">high-performance applications</span>.
           </motion.p>
 
-          {/* Enhanced CTA Buttons */}
+          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-5"
+            className="relative z-20 flex flex-col sm:flex-row gap-5"
           >
-            <motion.a
-              href="#projects"
-              className="group relative px-10 py-5 bg-gradient-to-r from-[#6B8E23] to-[#8FBF3F] text-white rounded-full font-semibold text-lg overflow-hidden"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[#8FBF3F] to-[#6B8E23]"
-                initial={{ x: "100%" }}
-                whileHover={{ x: 0 }}
-                transition={{ duration: 0.3 }}
-              />
-              <span className="relative flex items-center justify-center gap-2">
+            <Magnetic>
+              <a
+                href="#projects"
+                onClick={goToProjects}
+                className="group relative inline-flex items-center justify-center gap-2 px-9 py-4 rounded-full font-semibold text-lg text-white bg-gradient-to-r from-[#6B8E23] to-[#8FBF3F] shadow-[0_0_40px_rgba(107,142,35,0.4)] hover:shadow-[0_0_60px_rgba(107,142,35,0.65)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+              >
                 View Projects
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </span>
-              <div className="absolute inset-0 shadow-[0_0_40px_rgba(107,142,35,0.4)] group-hover:shadow-[0_0_60px_rgba(107,142,35,0.6)] transition-shadow" />
-            </motion.a>
+              </a>
+            </Magnetic>
 
-            <motion.a
-              href="/AyushGangwar_IIITVadodara.pdf"
-              download="AyushGangwar_IIITVadodara.pdf"
-              className="group relative px-10 py-5 bg-transparent text-[#F0F0F0] rounded-full font-semibold text-lg border-2 border-[#6B8E23]/50 hover:border-[#6B8E23] backdrop-blur-sm overflow-hidden"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <motion.div
-                className="absolute inset-0 bg-[#6B8E23]/10"
-                initial={{ scale: 0 }}
-                whileHover={{ scale: 1 }}
-                transition={{ duration: 0.3 }}
-              />
-              <span className="relative flex items-center justify-center gap-2">
+            <Magnetic>
+              <a
+                href="/Ayush_Gangwar_Resume.pdf"
+                download="Ayush_Gangwar_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center justify-center gap-2 px-9 py-4 rounded-full font-semibold text-lg text-[#F0F0F0] border-2 border-[#6B8E23]/60 hover:border-[#6B8E23] hover:bg-[#6B8E23]/15 backdrop-blur-sm hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+              >
                 Download Resume
                 <Download size={20} className="group-hover:translate-y-1 transition-transform" />
-              </span>
-            </motion.a>
+              </a>
+            </Magnetic>
           </motion.div>
         </div>
       </div>
